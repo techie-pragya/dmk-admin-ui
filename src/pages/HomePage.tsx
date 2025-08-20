@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui';
-import { LoginForm } from '../components/common';
 import { useAuthStore } from '../stores';
+import LoginPage from './LoginPage';
 
 export function HomePage() {
   const { user, isAuthenticated, logout } = useAuthStore();
@@ -20,16 +20,7 @@ export function HomePage() {
       data-testid="home-page"
       className="flex min-h-screen flex-col items-center justify-center bg-gray-50"
     >
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-md">
-        <div className="mb-6 text-center">
-          <h1 className="mb-2 text-2xl font-bold text-gray-900">
-            Welcome to Admin
-          </h1>
-          <p className="text-gray-600">
-            Please sign in to continue to your dashboard
-          </p>
-        </div>
-
+      <div className="w-full rounded-lg bg-white">
         {isAuthenticated ? (
           <div className="space-y-4">
             <div className="text-center">
@@ -49,15 +40,8 @@ export function HomePage() {
             </div>
           </div>
         ) : (
-          <LoginForm />
+          <LoginPage />
         )}
-
-        <div className="mt-6 border-t border-gray-200 pt-6">
-          <p className="text-center text-xs text-gray-500">
-            Built with React 19, TypeScript, Vite, Tailwind CSS v4, Zustand, and
-            TanStack Query
-          </p>
-        </div>
       </div>
     </div>
   );
